@@ -41,6 +41,7 @@ public class WileyTest  {
         driver.findElement(By.linkText("About Wiley")).isDisplayed();
         driver.findElement(By.linkText("Contact Us")).isDisplayed();
         driver.findElement(By.linkText("Help")).isDisplayed();
+        driver.close();
     }
 
     @Test //Test #2:  Checking items under Resources sub-header
@@ -56,6 +57,7 @@ public class WileyTest  {
         for(WebElement childLi : liElements){
             Assert.assertEquals(Arrays.asList(VALUES).contains(childLi.getText()), true);
         }
+        driver.close();
 
     }
 
@@ -74,6 +76,7 @@ public class WileyTest  {
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         Assert.assertEquals(driver.findElement(By.xpath("//*[@id=\"page-title\"]/h1")).getText(),
                                                                    "Students");
+        driver.close();
     }
     @Test //Test #4:  Checking “Resources For” menu on the left
     public void resourcesForMenu() throws IOException {
@@ -88,6 +91,7 @@ public class WileyTest  {
         for(WebElement childLi : liElements){
             Assert.assertEquals(Arrays.asList(VALUES).contains(childLi.getText()), true);
         }
+        driver.close();
     }
 
     @Test //Test #5:  Checking “Students” item is selected
@@ -99,6 +103,7 @@ public class WileyTest  {
         Assert.assertEquals(studentsSelector.getAttribute("href"), null);
         Assert.assertEquals(studentsSelector.getText(), "Students");
         Assert.assertEquals(studentsSelector.getCssValue("color"), "rgba(2, 95, 98, 1)");
+        driver.close();
     }
 
     @Test //#6:  Click “Home” link at the top navigation menu
@@ -108,6 +113,7 @@ public class WileyTest  {
 
         WebDriverWait wait = new WebDriverWait(driver, 60);
         wait.until(ExpectedConditions.titleIs("Wiley: Journals, books, and online products and services"));
+        driver.close();
     }
 
     @Test //Test #7:  Finding “Sign up to receive Wiley updates”
@@ -125,6 +131,7 @@ public class WileyTest  {
         String alertText = alert.getText();
         Assert.assertEquals(alertText, "Please enter email address");
         alert.accept();
+        driver.close();
     }
 
     @Test //Test #8:  Entering invalid email (for example without @)
@@ -145,6 +152,7 @@ public class WileyTest  {
         String alertText = alert.getText();
         Assert.assertEquals(alertText, "Invalid email address.");
         alert.accept();
+        driver.close();
     }
 
     @Test //Test #9: Enter “for dummies” to the input field
@@ -160,6 +168,7 @@ public class WileyTest  {
 
         boolean listAppeared =  (driver.findElement(By.id("search-results")) != null);
         Assert.assertEquals(listAppeared, true);
+        driver.close();
     }
 
     @Test //Test #10: Click random item link
@@ -176,6 +185,7 @@ public class WileyTest  {
         Assert.assertEquals(
                 driver.findElement(By.xpath("//*[@id=\"main-content-left\"]/table/tbody/tr/td/div[2]/h1")).isDisplayed(),
                 true);
+        driver.close();
     }
 
     @Test //#11: Click “Home” link at the top navigation menu
@@ -186,6 +196,7 @@ public class WileyTest  {
 
         WebDriverWait wait = new WebDriverWait(driver, 60);
         wait.until(ExpectedConditions.titleIs("Wiley: Journals, books, and online products and services"));
+        driver.close();
     }
 
     @Test //Test #12: Click “Institutions” icon under Resources sub-header
@@ -200,5 +211,6 @@ public class WileyTest  {
         driver.get(driver.getCurrentUrl());
 
         Assert.assertEquals(nameNewTab, "http://wileyedsolutions.com/");
+        driver.close();
     }
 }
